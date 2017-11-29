@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Courses at KEA</title>
+    <link rel="stylesheet" type="text/css"
+          href="../../static/css/styles.css"
+          th:href="@{css/styles.css}"/>
+
+</head>
+<body>
+<nav>
+    <div class="container">
+        <a href="/" id="logo">KEA</a>
+        <a href="/">Students </a>
+        <a href="courses">Courses</a>
+        <a href="enrollments">Enrollments</a>
+    </div>
+</nav>
+
+<div class="container">
+
+    <h1>Courses</h1>
+    <p>Courses at KEA</p>
+    <p><a href="/courses/create" class="btn btn-create">Create new Course</a></p>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Start Date</th>
+            <th>ETCS</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="c: ${courses}">
+            <td th:text="${c.courseId}"/>
+            <td th:text="${c.title}"/>
+            <td th:text="${#dates.format(c.startDate, 'd MMMM yyyy')}"/>
+            <td th:text="${c.etcs}"/>
+            <td>
+                <a th:href="@{/courses/details(id=${c.courseId})}" class="btn btn-detail">Details</a> <!-- http://www.thymeleaf.org/doc/articles/standardurlsyntax.html -->
+                <a href="@{/courses/edit(id=${c.courseId})}" class="btn btn-ed">Edit</a>
+                <a th:href="@{/courses/delete(id=${c.courseId})}" class="btn btn-del">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <footer class="footer">
+        &copy; Clbo - KEA 2017
+    </footer>
+</div>
+
+</body>
+</html>

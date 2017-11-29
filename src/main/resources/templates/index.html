@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Students at KEA</title>
+    <link rel="stylesheet" type="text/css"
+          href="../../static/css/styles.css"
+          th:href="@{css/styles.css}"/>
+
+</head>
+<div th:replace="fragments/header :: header">...</div>
+<body>
+<!-- <nav>
+    <div class="container">
+        <a href="/" id="logo">KEA</a>
+        <a href="/">Students </a> 
+        <a href="courses">Courses</a> 
+        <a href="enrollments">Enrollments</a>
+    </div>
+</nav> -->
+
+<div class="container">
+
+    <h1>Students</h1>
+    <p>Enrolled Students at KEA</p>
+    <p><a href="/create" class="btn btn-create">Create</a></p>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Enrollment Date</th>
+            <th>Cpr</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student: ${std}">
+            <td th:text="${student.studentId}"/>
+            <td th:text="${student.firstName}"/>
+            <td th:text="${student.lastName}"/>
+            <td th:text="${#dates.format(student.enrollmentDate, 'd MMMM yyyy')}"/> <!-- http://www.thymeleaf.org/doc/tutorials/2.1/usingthymeleaf.html#reformatting-dates-in-our-home-page -->
+            <td th:text="${student.cpr}"/>
+            <td>
+                <a th:href="@{/details(id=${student.studentId})}" class="btn btn-detail">Details</a> <!-- http://www.thymeleaf.org/doc/articles/standardurlsyntax.html -->
+                <a th:href="@{/edit(id=${student.studentId})}" class="btn btn-ed">Edit</a>
+                <a th:href="@{/delete(id=${student.studentId})}" class="btn btn-del">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <footer class="footer">
+        &copy; Clbo - KEA 2017
+    </footer>
+</div>
+
+</body>
+</html>
