@@ -38,7 +38,7 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` (`students_id`, `first_name`, `last_name`, `enrollment_date`, `cpr`) VALUES (1,'Claus','Bove','2017-11-22','21212121'),(2,'Hanne','Boesen','2017-11-26','323232'),(3,'Stephen','James','2017-11-15','SE21 8HZ'),(5,'Cay','Larsen','2017-12-23','21332244-7777'),(6,'Jon','Eikholm','2017-09-11','24342424-4444'),(7,'Johanne','Vestergård','2017-11-17','4920'),(8,'Johanne rrr','Vestergård rrr','2017-11-17','49204343-2'),(9,'Svend','Guttormsen','2017-06-07','32323232-22');
+INSERT INTO `students` VALUES (1,'Claus','Bove','2017-11-22','21212121'),(2,'Hanne','Boesen','2017-11-26','323232'),(3,'Stephen','James','2017-11-15','SE21 8HZ'),(5,'Cay','Larsen','2017-12-23','21332244-7777'),(6,'Jon','Eikholm','2017-09-11','24342424-4444'),(7,'Johanne','Vestergård','2017-11-17','4920'),(8,'Johanne rrr','Vestergård rrr','2017-11-17','49204343-2'),(9,'Svend','Guttormsen','2017-06-07','32323232-22');
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-30 14:35:14
+-- Dump completed on 2017-11-30 14:43:53
