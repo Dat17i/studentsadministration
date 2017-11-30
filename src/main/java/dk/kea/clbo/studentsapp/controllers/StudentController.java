@@ -82,16 +82,4 @@ public class StudentController {
         return "enroll"; // enroll.html is similar to create student
     }
 
-    @GetMapping("/search")
-    public String search(Model model){
-        model.addAttribute("sString",  new Search());
-        return "search";
-    }
-
-    @PostMapping("/search")
-    public String search(@ModelAttribute Search sString){
-        System.out.println(sString.getSearch());
-        System.out.println("Test Test");
-        return "redirect:/";
-    }
 }
