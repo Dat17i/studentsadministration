@@ -3,6 +3,7 @@ package dk.kea.clbo.studentsapp.models.entities;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by clbo on 24/11/2017.
@@ -14,6 +15,8 @@ public class Course {
     private Date startDate;
     private int etcs;
 
+    private List<Student> enrolled;
+
     public Course() {}
 
     public Course(int courseId, String title, Date startDate, int etcs) {
@@ -21,6 +24,14 @@ public class Course {
         this.title = title;
         this.startDate = startDate;
         this.etcs = etcs;
+    }
+
+    public Course(int courseId, String title, Date startDate, int etcs, List<Student> enrolled) {
+        this.courseId = courseId;
+        this.title = title;
+        this.startDate = startDate;
+        this.etcs = etcs;
+        this.enrolled = enrolled;
     }
 
     public int getCourseId() {
@@ -54,5 +65,13 @@ public class Course {
 
     public void setEtcs(int etcs) {
         this.etcs = etcs;
+    }
+
+    public List<Student> getEnrolled() {
+        return enrolled;
+    }
+
+    public void setEnrolled(List<Student> enrolled) {
+        this.enrolled = enrolled;
     }
 }

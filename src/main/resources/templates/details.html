@@ -14,16 +14,36 @@
 
 
     <h1>Details</h1>
-    <p th:text="'ID: ' + ${stu.studentId}"/>
-    <p th:text="'First Name: ' + ${stu.firstName}"/>
-    <p th:text="'LastName: ' + ${stu.lastName}"/>
-    <p th:text="'Enrollment Date: ' + ${stu.enrollmentDate}"/>
-    <p th:text="'CPR: ' + ${stu.cpr}"/>
+    <p th:text="'ID: ' + ${stu[0].student.studentId}"/>
+    <p th:text="'First Name: ' + ${stu[0].student.firstName}"/>
+    <p th:text="'LastName: ' + ${stu[0].student.lastName}"/>
+    <p th:text="'Enrollment Date: ' + ${stu[0].student.enrollmentDate}"/>
+    <p th:text="'CPR: ' + ${stu[0].student.cpr}"/>
 
-    <h2 th:text="'Enrollments for ' + ${stu.firstName} + ' ' + ${stu.lastName}"> </h2>
+    <h2 th:text="'Enrollments for ' + ${stu[0].student.firstName} + ' ' + ${stu[0].student.lastName}"></h2>
 
-    <p>The content here will come later</p>
+    <table>
+        <thead>
+        <tr>
+            <td>Course Id</td>
+            <td>Title</td>
+            <td>Start Date</td>
+            <td>ETCS</td>
+            <td>Grade</td>
+        </tr>
+        </thead>
+        <tbody th:if="${stu[0].course.courseId != 0}"> <!-- Check if no enrollments to avoid empty row -->
+        <tr th:each="enr: ${stu}">
+            <td th:text="${enr.course.courseId}"/>
+            <td th:text="${enr.course.title}"/>
+            <td th:text="${enr.course.startDate}"/>
+            <td th:text="${enr.course.etcs}"/>
+            <td th:text="${enr.grade}"/>
 
+        </tr>
+        </tbody>
+
+    </table>
 </div>
 </body>
 </html>

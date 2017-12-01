@@ -5,12 +5,12 @@ import dk.kea.clbo.studentsapp.models.entities.Student;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentInMemory implements IStudentRepository {
+public class StudentInMemory  {
 
     // Repository data (state)
     private List<Student> students = new ArrayList<>();
 
-    @Override
+
     public void create(Student student) {
 
         // generate random studentID
@@ -24,7 +24,7 @@ public class StudentInMemory implements IStudentRepository {
         students.add(student);
     }
 
-    @Override
+
     public Student read(int id) {
 
         for (Student stu : students) {
@@ -37,12 +37,12 @@ public class StudentInMemory implements IStudentRepository {
         return null;
     }
 
-    @Override
+
     public List<Student> readAll() {
         return students;
     }
 
-    @Override
+
     public boolean update(Student student) {
 
         for (Student st : students) {
@@ -56,10 +56,10 @@ public class StudentInMemory implements IStudentRepository {
         return false;
     }
 
-    @Override
-    public boolean delete(Student student) {
 
-        boolean st = students.remove(student);
+    public boolean delete(int id) {
+
+        boolean st = students.remove(new Student());
         return st;
 
     }

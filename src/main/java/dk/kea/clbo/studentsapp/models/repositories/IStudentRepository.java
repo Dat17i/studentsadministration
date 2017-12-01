@@ -1,13 +1,17 @@
 package dk.kea.clbo.studentsapp.models.repositories;
 
+import dk.kea.clbo.studentsapp.models.entities.Enrollment;
 import dk.kea.clbo.studentsapp.models.entities.Student;
+import dk.kea.clbo.studentsapp.models.entities.ViewModels.StudentsViewModel;
 
 import java.util.List;
 
 public interface IStudentRepository {
 
     // CRUD operations
-    public void create(Student student);
+    public boolean create(Student student);
+
+    public List<Enrollment> readOneWithEnrollments(int id);
 
     public Student read(int id);
 
@@ -15,5 +19,5 @@ public interface IStudentRepository {
 
     public boolean update(Student student);
 
-    public boolean delete(Student student);
+    public boolean delete(int id);
 }

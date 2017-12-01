@@ -3,6 +3,7 @@ package dk.kea.clbo.studentsapp.models.entities;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
 
 public class Student {
 
@@ -24,6 +25,7 @@ public class Student {
         this.enrollmentDate = enrollmentDate;
         this.cpr = cpr;
     }
+
 
     public int getStudentId() {
         return studentId;

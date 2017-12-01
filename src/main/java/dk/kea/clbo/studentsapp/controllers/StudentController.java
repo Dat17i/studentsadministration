@@ -1,7 +1,10 @@
 package dk.kea.clbo.studentsapp.controllers;
 
+import dk.kea.clbo.studentsapp.models.entities.Enrollment;
 import dk.kea.clbo.studentsapp.models.entities.Search;
 import dk.kea.clbo.studentsapp.models.entities.Student;
+import dk.kea.clbo.studentsapp.models.entities.ViewModels.StudentsViewModel;
+import dk.kea.clbo.studentsapp.models.repositories.ICrud;
 import dk.kea.clbo.studentsapp.models.repositories.IStudentRepository;
 import dk.kea.clbo.studentsapp.models.repositories.StudentInMemory;
 import dk.kea.clbo.studentsapp.models.repositories.StudentRepository;
@@ -18,6 +21,8 @@ public class StudentController {
 
     @Autowired
     private IStudentRepository studentRepository;
+   // @Autowired
+   // private ICrud<Enrollment> enrollmentsRepository;
 
    /* public StudentController() {
         studentRepository = new StudentInMemory(); //StudentInMemory();
@@ -45,14 +50,14 @@ public class StudentController {
 
     @GetMapping("/details")
     public String details(@RequestParam("id") int id, Model model) {
-        model.addAttribute("stu", studentRepository.read(id));
-        return "details";//details(model);
+        model.addAttribute("stu", studentRepository.readOneWithEnrollments(id));
+        return "details";
     }
 
     @GetMapping("/delete")
     public String delete(@RequestParam("id") int id, Model model) {
         model.addAttribute("stu", studentRepository.read(id));
-        //model.addAttribute("student", new Student());
+
         return "delete";
     }
 
@@ -70,7 +75,7 @@ public class StudentController {
 
     @PostMapping("/delete")
     public String delete(@ModelAttribute Student stu, Model model){
-        studentRepository.delete(stu);
+        studentRepository.delete(stu.getStudentId());
         return "redirect:/";
     }
 
