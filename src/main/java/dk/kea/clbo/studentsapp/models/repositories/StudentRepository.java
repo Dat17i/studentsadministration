@@ -3,7 +3,6 @@ package dk.kea.clbo.studentsapp.models.repositories;
 import dk.kea.clbo.studentsapp.models.entities.Course;
 import dk.kea.clbo.studentsapp.models.entities.Enrollment;
 import dk.kea.clbo.studentsapp.models.entities.Student;
-import dk.kea.clbo.studentsapp.models.entities.ViewModels.StudentsViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -46,24 +45,8 @@ public class StudentRepository implements IStudentRepository {
     @Override
     public List<Enrollment> readOneWithEnrollments(int id) {
 
-        // Student without enrollments
-        /*rs = jdbc.queryForRowSet("SELECT * FROM students where students_id ='" + id + "'");
-        while (rs.next()) {
-
-            return  new Student(rs.getInt("students_id"),
-                    rs.getString("first_name"),
-                    rs.getString("last_name"),
-                    rs.getDate("enrollment_date"),
-                    rs.getString("cpr"));
-
-        }
-
-        return new Student();*/
-
 
         // Student with list of enrollments
-        StudentsViewModel student = new StudentsViewModel();
-        List<Course> courses = new ArrayList<>();
         List<Enrollment> enrollments = new ArrayList<>();
 
 
@@ -83,60 +66,6 @@ public class StudentRepository implements IStudentRepository {
         }
 
         return enrollments;
-
-
-
-
-        /*while(rs.next()){
-            if (rs.getInt("courses_id") != 0) {
-                courses.add(
-                        new Course(
-                                rs.getInt("courses_id"),
-                                rs.getString("title"),
-                                rs.getDate("start_date"),
-                                rs.getInt("etcs")
-                        )
-                );
-
-                enrollments.add(new Enrollment(0, null, null, rs.getInt("grade")));
-            }
-
-            student = new StudentsViewModel(new Student(rs.getInt("students_id"),
-                    rs.getString("first_name"),
-                    rs.getString("last_name"),
-                    rs.getDate("enrollment_date"),
-                    rs.getString("cpr")),
-                    courses, enrollments);
-
-        }
-
-        return student;*/
-
-
-       /* while (rs.next()) {
-
-            // add enrollments if they exits othervise there will be an empty row in the view
-            if (rs.getInt("courses_id") != 0) {
-                enrollments.add(
-                        new Course(
-                                rs.getInt("courses_id"),
-                                rs.getString("title"),
-                                rs.getDate("start_date"),
-                                rs.getInt("etcs")
-                        )
-                );
-            }
-
-            student = new StudentsViewModel(rs.getInt("students_id"),
-                    rs.getString("first_name"),
-                    rs.getString("last_name"),
-                    rs.getDate("enrollment_date"),
-                    rs.getString("cpr"),
-                    enrollments
-            );
-        } */
-
-
 
     }
 
