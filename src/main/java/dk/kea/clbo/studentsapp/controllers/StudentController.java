@@ -1,13 +1,7 @@
 package dk.kea.clbo.studentsapp.controllers;
 
-import dk.kea.clbo.studentsapp.models.entities.Enrollment;
-import dk.kea.clbo.studentsapp.models.entities.Search;
 import dk.kea.clbo.studentsapp.models.entities.Student;
-import dk.kea.clbo.studentsapp.models.entities.ViewModels.StudentsViewModel;
-import dk.kea.clbo.studentsapp.models.repositories.ICrud;
 import dk.kea.clbo.studentsapp.models.repositories.IStudentRepository;
-import dk.kea.clbo.studentsapp.models.repositories.StudentInMemory;
-import dk.kea.clbo.studentsapp.models.repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class StudentController {
 
+    private final IStudentRepository studentRepository;
+
     @Autowired
-    private IStudentRepository studentRepository;
-   // @Autowired
-   // private ICrud<Enrollment> enrollmentsRepository;
+    public StudentController(IStudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
 
    /* public StudentController() {
         studentRepository = new StudentInMemory(); //StudentInMemory();

@@ -1,7 +1,5 @@
 package dk.kea.clbo.studentsapp.models.entities;
 
-import java.util.List;
-
 /**
  * Created by clbo on 24/11/2017.
  */

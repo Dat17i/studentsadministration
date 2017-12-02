@@ -3,6 +3,7 @@ package dk.kea.clbo.studentsapp.models.repositories;
 import dk.kea.clbo.studentsapp.models.entities.Course;
 import dk.kea.clbo.studentsapp.models.entities.Enrollment;
 import dk.kea.clbo.studentsapp.models.entities.Student;
+import dk.kea.clbo.studentsapp.models.util.DateHandling;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -31,26 +32,33 @@ public class StudentRepository implements IStudentRepository {
     @Override
     public boolean create(Student student) {
 
-        //Student stu = student.getStudent();
+        // Converting dates into the right format
+        String enrollmentdate = DateHandling.convertDate(student.getEnrollmentDate());
 
-        // Convert Enrollmentdate into the right format for mysql (yyyy-MM-dd)
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        String enrollmentdate = formatter.format(student.getEnrollmentDate());
-
-        jdbc.update("insert into students(first_name,last_name, enrollment_date, cpr)values('" + student.getFirstName() + "','" + student.getLastName() + "', '" + enrollmentdate + "', '" + student.getCpr() + "')");
+        jdbc.update("insert into students(first_name,last_name, enrollment_date, cpr)" +
+                "values('" + student.getFirstName() + "','" + student.getLastName() + "', '" +
+                enrollmentdate + "', '" + student.getCpr() + "')");
 
         return true;
     }
 
+
+    /**
+     *
+     * @param id
+     * @return A Student with a list of enrolled course and a grade
+     */
     @Override
     public List<Enrollment> readOneWithEnrollments(int id) {
 
 
-        // Student with list of enrollments
+
         List<Enrollment> enrollments = new ArrayList<>();
 
 
-        rs = jdbc.queryForRowSet("SELECT * FROM students LEFT JOIN students_courses ON fk_students = students.students_id LEFT JOIN courses ON fk_courses = courses.courses_id WHERE students_id =" + id);
+        rs = jdbc.queryForRowSet("SELECT * FROM students " +
+                "LEFT JOIN students_courses ON fk_students = students.students_id " +
+                "LEFT JOIN courses ON fk_courses = courses.courses_id WHERE students_id =" + id);
 
         while(rs.next()){
 

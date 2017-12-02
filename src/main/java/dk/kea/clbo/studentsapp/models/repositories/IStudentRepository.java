@@ -2,8 +2,6 @@ package dk.kea.clbo.studentsapp.models.repositories;
 
 import dk.kea.clbo.studentsapp.models.entities.Enrollment;
 import dk.kea.clbo.studentsapp.models.entities.Student;
-import dk.kea.clbo.studentsapp.models.entities.ViewModels.StudentsViewModel;
-
 import java.util.List;
 
 public interface IStudentRepository {

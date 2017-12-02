@@ -11,7 +11,7 @@ import java.util.List;
 public class Course {
     private int courseId;
     private String title;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd") // needed for input field on html pages (in order to serve the right format)
     private Date startDate;
     private int etcs;
 
