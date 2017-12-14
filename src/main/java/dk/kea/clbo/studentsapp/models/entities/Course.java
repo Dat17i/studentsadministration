@@ -74,4 +74,9 @@ public class Course {
     public void setEnrolled(List<Student> enrolled) {
         this.enrolled = enrolled;
     }
+
+    @Override
+    public String toString() {
+        return courseId + " " + title + " " + startDate + " " + etcs;
+    }
 }

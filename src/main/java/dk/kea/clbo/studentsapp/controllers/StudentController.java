@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class StudentController {
+public class StudentController  {
 
     private final IStudentRepository studentRepository;
 

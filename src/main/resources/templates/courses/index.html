@@ -5,18 +5,11 @@
     <title>Courses at KEA</title>
     <link rel="stylesheet" type="text/css"
           href="../../static/css/styles.css"
-          th:href="@{css/styles.css}"/>
+          th:href="@{../css/styles.css}"/>
 
 </head>
 <body>
-<nav>
-    <div class="container">
-        <a href="/" id="logo">KEA</a>
-        <a href="/">Students </a>
-        <a href="courses">Courses</a>
-        <a href="enrollments">Enrollments</a>
-    </div>
-</nav>
+<div th:replace="fragments/header :: header">...</div>
 
 <div class="container">
 
@@ -41,7 +34,7 @@
             <td th:text="${c.etcs}"/>
             <td>
                 <a th:href="@{/courses/details(id=${c.courseId})}" class="btn btn-detail">Details</a> <!-- http://www.thymeleaf.org/doc/articles/standardurlsyntax.html -->
-                <a href="@{/courses/edit(id=${c.courseId})}" class="btn btn-ed">Edit</a>
+                <a th:href="@{/courses/update(id=${c.courseId})}" class="btn btn-ed">Edit</a>
                 <a th:href="@{/courses/delete(id=${c.courseId})}" class="btn btn-del">Delete</a>
             </td>
         </tr>

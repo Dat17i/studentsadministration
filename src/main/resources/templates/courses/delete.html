@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css"
+          href="../../static/css/styles.css"
+          th:href="@{../css/styles.css}"/>
+
+    <title>Delete</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header">...</div>
+<div class="container">
+
+    <h1>Delete </h1>
+    <h2>Are you sure you want to delete</h2>
+
+
+    <form action="#" th:action="@{/courses/delete}"  method="post" >
+
+        <p th:text="${course.title}"></p>
+        <input type="hidden"  th:field="${course.courseId}"  />
+        <input type="submit" value="YES" class="btn btn-del w"/>
+        <a href="/" class="btn btn-create w" >NO</a>
+    </form>
+
+</div>
+
+</body>
+</html>

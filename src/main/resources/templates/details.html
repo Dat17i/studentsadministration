@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 
     <title>Student Details</title>
@@ -38,8 +38,14 @@
             <td th:text="${enr.course.title}"/>
             <td th:text="${enr.course.startDate}"/>
             <td th:text="${enr.course.etcs}"/>
-            <td th:text="${enr.grade}"/>
-
+            <td th:switch="${enr.grade}">
+                    <span th:case="0">
+                        <a href="*" th:href="@{/enrollments/grade/}">Grade Student</a>
+                    </span>
+                    <span th:case="*">
+                        <span th:text="${enr.grade}" />
+                    </span>
+            </td>
         </tr>
         </tbody>
 

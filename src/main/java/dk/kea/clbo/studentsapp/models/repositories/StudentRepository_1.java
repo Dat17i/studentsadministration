@@ -9,7 +9,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,14 +16,14 @@ import java.util.List;
  * Created by clbo on 20/11/2017.
  */
 @Repository
-public class StudentRepository implements ICrud<Student> {
+public class StudentRepository_1 implements IStudentRepository {
 
     @Autowired
     private JdbcTemplate jdbc;
     private ArrayList<Student> students;
     private SqlRowSet rs;
 
-    public StudentRepository() {
+    public StudentRepository_1() {
         students = new ArrayList<Student>();
     }
 
@@ -44,11 +43,13 @@ public class StudentRepository implements ICrud<Student> {
 
 
     /**
+     *
      * @param id
      * @return A Student with a list of enrolled course and a grade
      */
     @Override
     public List<Enrollment> readOneWithEnrollments(int id) {
+
 
 
         List<Enrollment> enrollments = new ArrayList<>();
@@ -58,7 +59,7 @@ public class StudentRepository implements ICrud<Student> {
                 "LEFT JOIN students_courses ON fk_students = students.students_id " +
                 "LEFT JOIN courses ON fk_courses = courses.courses_id WHERE students_id =" + id);
 
-        while (rs.next()) {
+        while(rs.next()){
 
             enrollments.add(new Enrollment(0, new Student(rs.getInt("students_id"),
                     rs.getString("first_name"),
@@ -76,12 +77,12 @@ public class StudentRepository implements ICrud<Student> {
     }
 
     @Override
-    public Student read(int id) {
+    public Student read(int id){
         // Student without enrollments
         rs = jdbc.queryForRowSet("SELECT * FROM students where students_id ='" + id + "'");
         while (rs.next()) {
 
-            return new Student(rs.getInt("students_id"),
+            return  new Student(rs.getInt("students_id"),
                     rs.getString("first_name"),
                     rs.getString("last_name"),
                     rs.getDate("enrollment_date"),

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="'Details for ' + ${course[0].course.title}"></title>
+
+    <title>Students at KEA</title>
+    <link rel="stylesheet" type="text/css"
+          href="../../static/css/styles.css"
+          th:href="@{/css/styles.css}"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header">...</div>
+
+<div class="container">
+    
+    <h1 th:text="'Title: ' + ${course[0].course.title}"/>
+    <p th:text="'Start Date: ' + ${#dates.format(course[0].course.startDate, 'd MMMM yyyy')}"/>
+    <p th:text="'ETCS: ' + ${course[0].course.etcs}"/>
+
+    <h2>Enrolled Students</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <td>Student Id</td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Enrollement Date</td>
+            <td>Cpr</td>
+        </tr>
+        </thead>
+        <tbody th:if="${course[0].student.StudentId != 0}"> <!-- Check if no enrollments to avoid empty row -->
+        <tr th:each="enr: ${course}">
+            <td th:text="${enr.student.studentId}"/>
+            <td th:text="${enr.student.firstName}"/>
+            <td th:text="${enr.student.lastName}"/>
+            <td th:text="${enr.student.enrollmentDate}"/>
+            <td th:text="${enr.student.cpr}"/>
+
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+</body>
+</html>

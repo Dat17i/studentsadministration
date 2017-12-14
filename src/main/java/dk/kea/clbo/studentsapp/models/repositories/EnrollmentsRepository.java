@@ -14,19 +14,19 @@ import java.util.List;
  * Created by clbo on 30/11/2017.
  */
 @Repository
-public class EnrollmentsRepository implements ICrud<Enrollment> {
+public class EnrollmentsRepository {
 
    @Autowired
    private JdbcTemplate jdbc;
    private SqlRowSet rs;
    private List<Enrollment> enrollments;
 
-    @Override
+    //@Override
     public boolean create(Enrollment enrollment) {
         return false;
     }
 
-    @Override
+    //@Override
     public Enrollment read(int id) {
 
 
@@ -34,7 +34,7 @@ public class EnrollmentsRepository implements ICrud<Enrollment> {
         return null;
     }
 
-    @Override
+   // @Override
     public List<Enrollment> readAll() {
         rs = jdbc.queryForRowSet("SELECT * FROM students_courses INNER JOIN students ON fk_students = students.students_id INNER JOIN courses ON fk_courses = courses.courses_id WHERE fk_students = 1");
         while(rs.next()){
@@ -46,12 +46,12 @@ public class EnrollmentsRepository implements ICrud<Enrollment> {
         return enrollments;
     }
 
-    @Override
+   // @Override
     public boolean update(Enrollment enrollment) {
         return false;
     }
 
-    @Override
+    // @Override
     public boolean delete(int id) {
         return false;
     }

@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,12 +25,17 @@ public class CoursesController {
     }
     //private List<Course> courses = new ArrayList<>();
 
+
+    // READ ALL
+
     @GetMapping("/courses")
     public String index(Model model){
         model.addAttribute("courses", courses.readAll());
         return "/courses/index";
     }
 
+
+    // CREATE
 
     @GetMapping("/courses/create")
     public String create(Model model) {
@@ -42,4 +48,40 @@ public class CoursesController {
         courses.create(course);
         return "redirect:/courses";
     }
+
+    // Update
+
+    @GetMapping("/courses/update")
+    public String update(@RequestParam("id") int id, Model model) {
+        model.addAttribute("course", courses.read(id));
+        return "/courses/update";
+    }
+
+    @PostMapping("/courses/update")
+    public String update(@ModelAttribute Course course) {
+        courses.update(course);
+        return "redirect:/courses";
+    }
+
+    @GetMapping("/courses/delete")
+    public String delete(@RequestParam("id") int id, Model model) {
+        model.addAttribute("course", courses.read(id));
+        return "/courses/delete";
+    }
+
+    @PostMapping("/courses/delete")
+    public String delete(@ModelAttribute Course course, Model model){
+        courses.delete(course.getCourseId());
+        return "redirect:/courses/";
+    }
+
+    @GetMapping("/courses/details")
+    public String details(@RequestParam("id") int id, Model model) {
+        model.addAttribute("course", courses.readOneWithEnrollments(id));
+        return "/courses/details";
+    }
+
+
+
+
 }

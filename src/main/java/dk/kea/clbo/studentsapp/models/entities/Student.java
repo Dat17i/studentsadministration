@@ -3,6 +3,7 @@ package dk.kea.clbo.studentsapp.models.entities;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
 
 public class Student {
 
@@ -13,6 +14,8 @@ public class Student {
     @DateTimeFormat(pattern = "yyyy-MM-dd") // needed for input field on html pages (in order to serve the right format)
     private Date enrollmentDate;
     private String cpr;
+
+    private List<Course> enrollments;
 
     public Student() {
     }
@@ -25,6 +28,14 @@ public class Student {
         this.cpr = cpr;
     }
 
+    public Student(int studentId, String firstName, String lastName, Date enrollmentDate, String cpr, List<Course> enrollments) {
+        this.studentId = studentId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.enrollmentDate = enrollmentDate;
+        this.cpr = cpr;
+        this.enrollments = enrollments;
+    }
 
     public int getStudentId() {
         return studentId;
@@ -66,12 +77,23 @@ public class Student {
         this.cpr = cpr;
     }
 
+    public List<Course> getEnrollments() {
+        return enrollments;
+    }
+
+    public void setEnrollments(List<Course> enrollments) {
+        this.enrollments = enrollments;
+    }
+
     @Override
     public String toString() {
-        return getStudentId() + " "
-                + getFirstName() + " "
-                + getLastName() + " "
-                + getEnrollmentDate() + " "
-                + getCpr();
+        return "Student{" +
+                "studentId=" + studentId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", enrollmentDate=" + enrollmentDate +
+                ", cpr='" + cpr + '\'' +
+                ", enrollments=" + enrollments +
+                '}';
     }
 }
